@@ -1,0 +1,2204 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>A Quick Review · Professor Frisby's Mostly Adequate Guide to Functional Programming</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.2">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-exercises/exercises.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="styles/website.css">
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="ch02.html" />
+    
+    
+    <link rel="prev" href="ch02-kr.md" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="ch01-kr.html">
+            
+                <a href="ch01-kr.html">
+            
+                    
+                    01 장: 우리는 무엇을 하고 있나?
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="ch01-kr.html">
+            
+                <a href="ch01-kr.html#소개">
+            
+                    
+                    Introductions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="ch01-kr.html">
+            
+                <a href="ch01-kr.html#a-brief-encounter">
+            
+                    
+                    A Brief Encounter
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="ch02-kr.md">
+            
+                <span>
+            
+                    
+                    02 장: 일급 함수
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="ch02.html">
+            
+                <a href="ch02.html#a-quick-review">
+            
+                    
+                    A Quick Review
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="ch02.html">
+            
+                <a href="ch02.html#why-favor-first-class">
+            
+                    
+                    Why Favor First Class?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="ch03.html">
+            
+                <a href="ch03.html">
+            
+                    
+                    Chapter 03: Pure Happiness with Pure Functions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ch03.html">
+            
+                <a href="ch03.html#oh-to-be-pure-again">
+            
+                    
+                    Oh to Be Pure Again
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="ch03.html">
+            
+                <a href="ch03.html#side-effects-may-include">
+            
+                    
+                    Side Effects May Include...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="ch03.html">
+            
+                <a href="ch03.html#8th-grade-math">
+            
+                    
+                    8th Grade Math
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="ch03.html">
+            
+                <a href="ch03.html#the-case-for-purity">
+            
+                    
+                    The Case for Purity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="ch03.html">
+            
+                <a href="ch03.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="ch04.html">
+            
+                <a href="ch04.html">
+            
+                    
+                    Chapter 04: Currying
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="ch04.html">
+            
+                <a href="ch04.html#cant-live-if-livin-is-without-you">
+            
+                    
+                    Can't Live If Livin' Is without You
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="ch04.html">
+            
+                <a href="ch04.html#more-than-a-pun--special-sauce">
+            
+                    
+                    More Than a Pun / Special Sauce
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="ch04.html">
+            
+                <a href="ch04.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="ch04.html">
+            
+                <a href="ch04.html#exercises">
+            
+                    
+                    Exercises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="ch05.html">
+            
+                <a href="ch05.html">
+            
+                    
+                    Chapter 05: Coding by Composing
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="ch05.html">
+            
+                <a href="ch05.html#functional-husbandry">
+            
+                    
+                    Functional Husbandry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="ch05.html">
+            
+                <a href="ch05.html#pointfree">
+            
+                    
+                    Pointfree
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.3" data-path="ch05.html">
+            
+                <a href="ch05.html#debugging">
+            
+                    
+                    Debugging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.4" data-path="ch05.html">
+            
+                <a href="ch05.html#category-theory">
+            
+                    
+                    Category Theory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.5" data-path="ch05.html">
+            
+                <a href="ch05.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.6" data-path="ch05.html">
+            
+                <a href="ch05.html#exercises">
+            
+                    
+                    Exercises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="ch06.html">
+            
+                <a href="ch06.html">
+            
+                    
+                    Chapter 06: Example Application
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="ch06.html">
+            
+                <a href="ch06.html#declarative-coding">
+            
+                    
+                    Declarative Coding
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="ch06.html">
+            
+                <a href="ch06.html#a-flickr-of-functional-programming">
+            
+                    
+                    A Flickr of Functional Programming
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="ch06.html">
+            
+                <a href="ch06.html#a-principled-refactor">
+            
+                    
+                    A Principled Refactor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.4" data-path="ch06.html">
+            
+                <a href="ch06.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="ch07-kr.html">
+            
+                <a href="ch07-kr.html">
+            
+                    
+                    07 장: 힌들리-밀너와 나
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="ch07-kr.html">
+            
+                <a href="ch07-kr.html#당신은-무슨-타입인가요">
+            
+                    
+                    당신은 무슨 타입인가요?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="ch07-kr.html">
+            
+                <a href="ch07-kr.html#비밀-이야기">
+            
+                    
+                    비밀 이야기
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="ch07-kr.html">
+            
+                <a href="ch07-kr.html#가능성을-높이기">
+            
+                    
+                    가능성을 높이기
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="ch07-kr.html">
+            
+                <a href="ch07-kr.html#공짜로-정리-얻기">
+            
+                    
+                    공짜로 정리 얻기
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="ch07-kr.html">
+            
+                <a href="ch07-kr.html#제약">
+            
+                    
+                    제약
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="ch07-kr.html">
+            
+                <a href="ch07-kr.html#요약">
+            
+                    
+                    요약
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="ch08.html">
+            
+                <a href="ch08.html">
+            
+                    
+                    Chapter 08: Tupperware
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="ch08.html">
+            
+                <a href="ch08.html#the-mighty-container">
+            
+                    
+                    The Mighty Container
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="ch08.html">
+            
+                <a href="ch08.html#my-first-functor">
+            
+                    
+                    My First Functor
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="ch08.html">
+            
+                <a href="ch08.html#schrödingers-maybe">
+            
+                    
+                    Schrödinger's Maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="ch08.html">
+            
+                <a href="ch08.html#use-cases">
+            
+                    
+                    Use Cases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="ch08.html">
+            
+                <a href="ch08.html#releasing-the-value">
+            
+                    
+                    Releasing the Value
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.6" data-path="ch08.html">
+            
+                <a href="ch08.html#pure-error-handling">
+            
+                    
+                    Pure Error Handling
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.7" data-path="ch08.html">
+            
+                <a href="ch08.html#old-mcdonald-had-effects">
+            
+                    
+                    Old McDonald Had Effects...
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.8" data-path="ch08.html">
+            
+                <a href="ch08.html#asynchronous-tasks">
+            
+                    
+                    Asynchronous Tasks
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.9" data-path="ch08.html">
+            
+                <a href="ch08.html#a-spot-of-theory">
+            
+                    
+                    A Spot of Theory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.10" data-path="ch08.html">
+            
+                <a href="ch08.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.11" data-path="ch08.html">
+            
+                <a href="ch08.html#exercises">
+            
+                    
+                    Exercises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="ch09.html">
+            
+                <a href="ch09.html">
+            
+                    
+                    Chapter 09: Monadic Onions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="ch09.html">
+            
+                <a href="ch09.html#pointy-functor-factory">
+            
+                    
+                    Pointy Functor Factory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="ch09.html">
+            
+                <a href="ch09.html#mixing-metaphors">
+            
+                    
+                    Mixing Metaphors
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="ch09.html">
+            
+                <a href="ch09.html#my-chain-hits-my-chest">
+            
+                    
+                    My Chain Hits My Chest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="ch09.html">
+            
+                <a href="ch09.html#power-trip">
+            
+                    
+                    Power Trip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="ch09.html">
+            
+                <a href="ch09.html#theory">
+            
+                    
+                    Theory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="ch09.html">
+            
+                <a href="ch09.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.7" data-path="ch09.html">
+            
+                <a href="ch09.html#exercises">
+            
+                    
+                    Exercises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="ch10.html">
+            
+                <a href="ch10.html">
+            
+                    
+                    Chapter 10: Applicative Functors
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="ch10.html">
+            
+                <a href="ch10.html#applying-applicatives">
+            
+                    
+                    Applying Applicatives
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="ch10.html">
+            
+                <a href="ch10.html#ships-in-bottles">
+            
+                    
+                    Ships in Bottles
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="ch10.html">
+            
+                <a href="ch10.html#coordination-motivation">
+            
+                    
+                    Coordination Motivation
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.4" data-path="ch10.html">
+            
+                <a href="ch10.html#bro-do-you-even-lift">
+            
+                    
+                    Bro, Do You Even Lift?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.5" data-path="ch10.html">
+            
+                <a href="ch10.html#operators">
+            
+                    
+                    Operators
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.6" data-path="ch10.html">
+            
+                <a href="ch10.html#free-can-openers">
+            
+                    
+                    Free Can Openers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.7" data-path="ch10.html">
+            
+                <a href="ch10.html#laws">
+            
+                    
+                    Laws
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.8" data-path="ch10.html">
+            
+                <a href="ch10.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.9" data-path="ch10.html">
+            
+                <a href="ch10.html#exercises">
+            
+                    
+                    Exercises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="ch11.html">
+            
+                <a href="ch11.html">
+            
+                    
+                    Chapter 11: Transform Again, Naturally
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="ch11.html">
+            
+                <a href="ch11.html#curse-this-nest">
+            
+                    
+                    Curse This Nest
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="ch11.html">
+            
+                <a href="ch11.html#a-situational-comedy">
+            
+                    
+                    A Situational Comedy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="ch11.html">
+            
+                <a href="ch11.html#all-natural">
+            
+                    
+                    All Natural
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.4" data-path="ch11.html">
+            
+                <a href="ch11.html#principled-type-conversions">
+            
+                    
+                    Principled Type Conversions
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5" data-path="ch11.html">
+            
+                <a href="ch11.html#feature-envy">
+            
+                    
+                    Feature Envy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.6" data-path="ch11.html">
+            
+                <a href="ch11.html#isomorphic-javascript">
+            
+                    
+                    Isomorphic JavaScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.7" data-path="ch11.html">
+            
+                <a href="ch11.html#a-broader-definition">
+            
+                    
+                    A Broader Definition
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.8" data-path="ch11.html">
+            
+                <a href="ch11.html#one-nesting-solution">
+            
+                    
+                    One Nesting Solution
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.9" data-path="ch11.html">
+            
+                <a href="ch11.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.10" data-path="ch11.html">
+            
+                <a href="ch11.html#exercises">
+            
+                    
+                    Exercises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="ch12.html">
+            
+                <a href="ch12.html">
+            
+                    
+                    Chapter 12: Traversing the Stone
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="ch12.html">
+            
+                <a href="ch12.html#types-n-types">
+            
+                    
+                    Types n' Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="ch12.html">
+            
+                <a href="ch12.html#type-feng-shui">
+            
+                    
+                    Type Feng Shui
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="ch12.html">
+            
+                <a href="ch12.html#effect-assortment">
+            
+                    
+                    Effect Assortment
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.4" data-path="ch12.html">
+            
+                <a href="ch12.html#waltz-of-the-types">
+            
+                    
+                    Waltz of the Types
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.5" data-path="ch12.html">
+            
+                <a href="ch12.html#no-law-and-order">
+            
+                    
+                    No Law and Order
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.6" data-path="ch12.html">
+            
+                <a href="ch12.html#in-summary">
+            
+                    
+                    In Summary
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.7" data-path="ch12.html">
+            
+                <a href="ch12.html#exercises">
+            
+                    
+                    Exercises
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html">
+            
+                    
+                    Appendix A: Essential Functions Support
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#always">
+            
+                    
+                    always
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#compose">
+            
+                    
+                    compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.3" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#curry">
+            
+                    
+                    curry
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.4" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#either">
+            
+                    
+                    either
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.5" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#identity">
+            
+                    
+                    identity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.6" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#inspect">
+            
+                    
+                    inspect
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.7" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#left">
+            
+                    
+                    left
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.8" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#lifta">
+            
+                    
+                    liftA*
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.9" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#maybe">
+            
+                    
+                    maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.10" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#nothing">
+            
+                    
+                    nothing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.11" data-path="appendix_a.html">
+            
+                <a href="appendix_a.html#reject">
+            
+                    
+                    reject
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html">
+            
+                    
+                    Appendix B: Algebraic Structures Support
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#compose">
+            
+                    
+                    Compose
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#either">
+            
+                    
+                    Either
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#identity">
+            
+                    
+                    Identity
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#io">
+            
+                    
+                    IO
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#list">
+            
+                    
+                    List
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#map">
+            
+                    
+                    Map
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.7" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#maybe">
+            
+                    
+                    Maybe
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.8" data-path="appendix_b.html">
+            
+                <a href="appendix_b.html#task">
+            
+                    
+                    Task
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html">
+            
+                    
+                    Appendix C: Pointfree Utilities
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.16.1" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#add">
+            
+                    
+                    add
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.2" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#append">
+            
+                    
+                    append
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.3" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#chain">
+            
+                    
+                    chain
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.4" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#concat">
+            
+                    
+                    concat
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.5" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#eq">
+            
+                    
+                    eq
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.6" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#filter">
+            
+                    
+                    filter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.7" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#flip">
+            
+                    
+                    flip
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.8" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#foreach">
+            
+                    
+                    forEach
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.9" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#head">
+            
+                    
+                    head
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.10" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#intercalate">
+            
+                    
+                    intercalate
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.11" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#join">
+            
+                    
+                    join
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.12" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#last">
+            
+                    
+                    last
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.13" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#map">
+            
+                    
+                    map
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.14" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#match">
+            
+                    
+                    match
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.15" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#prop">
+            
+                    
+                    prop
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.16" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#reduce">
+            
+                    
+                    reduce
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.17" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#replace">
+            
+                    
+                    replace
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.18" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#safehead">
+            
+                    
+                    safeHead
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.19" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#safelast">
+            
+                    
+                    safeLast
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.20" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#safeprop">
+            
+                    
+                    safeProp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.21" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#sequence">
+            
+                    
+                    sequence
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.22" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#sortby">
+            
+                    
+                    sortBy
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.23" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#split">
+            
+                    
+                    split
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.24" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#take">
+            
+                    
+                    take
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.25" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#tolowercase">
+            
+                    
+                    toLowerCase
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.26" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#tostring">
+            
+                    
+                    toString
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.27" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#touppercase">
+            
+                    
+                    toUpperCase
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.28" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#traverse">
+            
+                    
+                    traverse
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.29" data-path="appendix_c.html">
+            
+                <a href="appendix_c.html#unsafeperformio">
+            
+                    
+                    unsafePerformIO
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >A Quick Review</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="chapter-02-first-class-functions">Chapter 02: First Class Functions</h1>
+<h2 id="a-quick-review">A Quick Review</h2>
+<p>When we say functions are &quot;first class&quot;, we mean they are just like everyone else... so in other words a normal class. We can treat functions like any other data type and there is nothing particularly special about them - they may be stored in arrays, passed around as function parameters, assigned to variables, and what have you.</p>
+<p>That is JavaScript 101, but worth mentioning since a quick code search on github will reveal the collective evasion, or perhaps widespread ignorance of this concept. Shall we go for a feigned example? We shall.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> hi = name =&gt; <span class="hljs-string">`Hi <span class="hljs-subst">${name}</span>`</span>;
+<span class="hljs-keyword">const</span> greeting = name =&gt; hi(name);
+</code></pre>
+<p>Here, the function wrapper around <code>hi</code> in <code>greeting</code> is completely redundant. Why? Because functions are <em>callable</em> in JavaScript. When <code>hi</code> has the <code>()</code> at the end it will run and return a value. When it does not, it simply returns the function stored in the variable. Just to be sure, have a look yourself:</p>
+<pre><code class="lang-js">hi; <span class="hljs-comment">// name =&gt; `Hi ${name}`</span>
+hi(<span class="hljs-string">&quot;jonas&quot;</span>); <span class="hljs-comment">// &quot;Hi jonas&quot;</span>
+</code></pre>
+<p>Since <code>greeting</code> is merely in turn calling <code>hi</code> with the very same argument, we could simply write:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> greeting = hi;
+greeting(<span class="hljs-string">&quot;times&quot;</span>); <span class="hljs-comment">// &quot;Hi times&quot;</span>
+</code></pre>
+<p>In other words, <code>hi</code> is already a function that expects one argument, why place another function around it that simply calls <code>hi</code> with the same bloody argument? It doesn&apos;t make any damn sense. It&apos;s like donning your heaviest parka in the dead of July just to blast the air and demand an ice lolly.</p>
+<p>It is obnoxiously verbose and, as it happens, bad practice to surround a function with another function merely to delay evaluation (we&apos;ll see why in a moment, but it has to do with maintenance)</p>
+<p>A solid understanding of this is critical before moving on, so let&apos;s examine a few more fun examples excavated from the library of npm packages.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// ignorant</span>
+<span class="hljs-keyword">const</span> getServerStuff = callback =&gt; ajaxCall(json =&gt; callback(json));
+
+<span class="hljs-comment">// enlightened</span>
+<span class="hljs-keyword">const</span> getServerStuff = ajaxCall;
+</code></pre>
+<p>The world is littered with ajax code exactly like this. Here is the reason both are equivalent:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// this line</span>
+ajaxCall(json =&gt; callback(json));
+
+<span class="hljs-comment">// is the same as this line</span>
+ajaxCall(callback);
+
+<span class="hljs-comment">// so refactor getServerStuff</span>
+<span class="hljs-keyword">const</span> getServerStuff = callback =&gt; ajaxCall(callback);
+
+<span class="hljs-comment">// ...which is equivalent to this</span>
+<span class="hljs-keyword">const</span> getServerStuff = ajaxCall; <span class="hljs-comment">// &lt;-- look mum, no ()&apos;s</span>
+</code></pre>
+<p>And that, folks, is how it is done. Once more so that we understand why I&apos;m being so persistent.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> BlogController = {
+  index(posts) { <span class="hljs-keyword">return</span> Views.index(posts); },
+  show(post) { <span class="hljs-keyword">return</span> Views.show(post); },
+  create(attrs) { <span class="hljs-keyword">return</span> Db.create(attrs); },
+  update(post, attrs) { <span class="hljs-keyword">return</span> Db.update(post, attrs); },
+  destroy(post) { <span class="hljs-keyword">return</span> Db.destroy(post); },
+};
+</code></pre>
+<p>This ridiculous controller is 99% fluff. We could either rewrite it as:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> BlogController = {
+  index: Views.index,
+  show: Views.show,
+  create: Db.create,
+  update: Db.update,
+  destroy: Db.destroy,
+};
+</code></pre>
+<p>... or scrap it altogether since it does nothing more than just bundle our Views and Db together.</p>
+<h2 id="why-favor-first-class">Why Favor First Class?</h2>
+<p>Okay, let&apos;s get down to the reasons to favor first class functions. As we saw in the <code>getServerStuff</code> and <code>BlogController</code> examples, it&apos;s easy to add layers of indirection that provide no added value and only increase the amount of redundant code to maintain and search through.</p>
+<p>In addition, if such a needlessly wrapped function must be changed, we must also need to change our wrapper function as well.</p>
+<pre><code class="lang-js">httpGet(<span class="hljs-string">&apos;/post/2&apos;</span>, json =&gt; renderPost(json));
+</code></pre>
+<p>If <code>httpGet</code> were to change to send a possible <code>err</code>, we would need to go back and change the &quot;glue&quot;.</p>
+<pre><code class="lang-js"><span class="hljs-comment">// go back to every httpGet call in the application and explicitly pass err along.</span>
+httpGet(<span class="hljs-string">&apos;/post/2&apos;</span>, (json, err) =&gt; renderPost(json, err));
+</code></pre>
+<p>Had we written it as a first class function, much less would need to change:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// renderPost is called from within httpGet with however many arguments it wants</span>
+httpGet(<span class="hljs-string">&apos;/post/2&apos;</span>, renderPost);
+</code></pre>
+<p>Besides the removal of unnecessary functions, we must name and reference arguments. Names are a bit of an issue, you see. We have potential misnomers - especially as the codebase ages and requirements change.</p>
+<p>Having multiple names for the same concept is a common source of confusion in projects. There is also the issue of generic code. For instance, these two functions do exactly the same thing, but one feels infinitely more general and reusable:</p>
+<pre><code class="lang-js"><span class="hljs-comment">// specific to our current blog</span>
+<span class="hljs-keyword">const</span> validArticles = articles =&gt;
+  articles.filter(article =&gt; article !== <span class="hljs-literal">null</span> &amp;&amp; article !== <span class="hljs-literal">undefined</span>),
+
+<span class="hljs-comment">// vastly more relevant for future projects</span>
+<span class="hljs-keyword">const</span> compact = xs =&gt; xs.filter(x =&gt; x !== <span class="hljs-literal">null</span> &amp;&amp; x !== <span class="hljs-literal">undefined</span>);
+</code></pre>
+<p>By using specific naming, we&apos;ve seemingly tied ourselves to specific data (in this case <code>articles</code>). This happens quite a bit and is a source of much reinvention.</p>
+<p>I must mention that, just like with Object-Oriented code, you must be aware of <code>this</code> coming to bite you in the jugular. If an underlying function uses <code>this</code> and we call it first class, we are subject to this leaky abstraction&apos;s wrath.</p>
+<pre><code class="lang-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">&apos;fs&apos;</span>);
+
+<span class="hljs-comment">// scary</span>
+fs.readFile(<span class="hljs-string">&apos;freaky_friday.txt&apos;</span>, Db.save);
+
+<span class="hljs-comment">// less so</span>
+fs.readFile(<span class="hljs-string">&apos;freaky_friday.txt&apos;</span>, Db.save.bind(Db));
+</code></pre>
+<p>Having been bound to itself, the <code>Db</code> is free to access its prototypical garbage code. I avoid using <code>this</code> like a dirty nappy. There&apos;s really no need when writing functional code. However, when interfacing with other libraries, you might have to acquiesce to the mad world around us.</p>
+<p>Some will argue that <code>this</code> is necessary for optimizing speed. If you are the micro-optimization sort, please close this book. If you cannot get your money back, perhaps you can exchange it for something more fiddly.</p>
+<p>And with that, we&apos;re ready to move on.</p>
+<p><a href="ch03.html">Chapter 03: Pure Happiness with Pure Functions</a></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="ch02-kr.md" class="navigation navigation-prev " aria-label="Previous page: 02 장: 일급 함수">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="ch02.html#why-favor-first-class" class="navigation navigation-next " aria-label="Next page: Why Favor First Class?">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"A Quick Review","level":"1.3.1","depth":2,"next":{"title":"Why Favor First Class?","level":"1.3.2","depth":2,"anchor":"#why-favor-first-class","path":"ch02.md","ref":"ch02.md#why-favor-first-class","articles":[]},"previous":{"title":"02 장: 일급 함수","level":"1.3","depth":1,"path":"ch02-kr.md","ref":"ch02-kr.md","articles":[{"title":"A Quick Review","level":"1.3.1","depth":2,"anchor":"#a-quick-review","path":"ch02.md","ref":"ch02.md#a-quick-review","articles":[]},{"title":"Why Favor First Class?","level":"1.3.2","depth":2,"anchor":"#why-favor-first-class","path":"ch02.md","ref":"ch02.md#why-favor-first-class","articles":[]}]},"dir":"ltr"},"config":{"plugins":["exercises@git+https://github.com/MostlyAdequate/plugin-exercises.git","include-codeblock@3.1.2"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"exercises":{},"include-codeblock":{"check":false,"edit":false,"lang":"","fixlang":false,"template":"default","theme":"chrome","unindent":false},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"cover":"images/cover.png","title":"Professor Frisby's Mostly Adequate Guide to Functional Programming","gitbook":"3.2.2"},"file":{"path":"ch02.md","mtime":"2021-02-01T15:11:29.463Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2021-02-01T15:12:19.282Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook-plugin-exercises/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+    
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-exercises/ace/ace.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-exercises/ace/theme-tomorrow.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-exercises/ace/mode-javascript.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-exercises/exercises.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+
+    </body>
+</html>
+
