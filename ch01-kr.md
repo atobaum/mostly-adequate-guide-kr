@@ -2,20 +2,22 @@
 
 ## 소개
 
-안녕하세요, 저는 Franklin Frisby 교수입니다. 만나서 반갑습니다. 제가 당신에게 함수형 프로그래밍에대해 조금 알려드리는 동안 우리는 조금 어울리게 되겠지요. 저에 대해서는 충분히 이야기 했습니다. 당신은 어떤 사람입니까? 저는 당신이 최소한 자바스크립트에 대해 친숙하고 객체지향 프로그래밍 경혐이 조금 있기를 바랍니다. 그리고 당신 자신을 프로그래머라고 생각하고 있기를요. 곤총학 박사가 아니어도 되지만 곤충(bug)를 찾고 잡는 법을 알고 있어야 합니다.
+안녕하세요, 저는 Franklin Frisby 교수입니다. 만나서 반갑습니다. 당신과 어울리면서 함수형 프로그래밍에대해 조금 알려드리겠습니다. 그런데 당신은 어떤 사람입니까? 저는 당신이 최소한 자바스크립트에 대해 친숙하고 객체지향 프로그래밍 경혐이 조금 있기를 바랍니다. 그리고 당신 자신을 프로그래머라고 생각하고 있기를요. 곤충학 박사가 아니어도 되지만 곤충(bug)를 찾고 잡는 법을 알고 있어야 합니다.
 
-저는 당신이 함수형 프로그래밍에 대한 지식을 가지고 있다고 가정하지 않겠습니다. 그렇게 생각하면 어떤 일이 벌어질지 우리 모두 알고 있잖아요. 하지만 변하는 상태(mutable state)와 제한되지 않은 부수효과(side effects), 규칙 없는 디자인이 만드는 불쾌한 상황을 겪어봤길 기대합니다. 이제 서로 충분히 알게 된 것 같군요. 이제 시작합니다.
+저는 당신이 함수형 프로그래밍을 알고 있다고 생각하지는 않겠습니다. 그렇게 생각하면 어떻게 될지 우리 모두 알고 있잖아요. 하지만 변하는 상태(mutable state)와 제한되지 않은 부수효과(side effects), 규칙 없는 디자인이 만드는 불쾌한 상황을 겪어봤길 기대합니다. 이제 서로 충분히 알게 된 것 같군요. 이제 시작합니다.
 
-이 장의 목적은 함수형 프로그램을 쓰고난 후에 우리가 무엇이 되어있을지 감을 잡게 해 주는 것입니다. 다음 장들을 이해하기 위해서는 무엇이 _함수형_ 프로그램을 만드는지에 대해 어느정도 알고있어야합니다. 그렇지 않으면 목적을 잃고
+이 장의 목적은 함수형 프로그램을 쓰고난 후에 우리가 무엇이 되어있을지 감을 잡게 해 주는 것입니다. 다음 장들을 이해하기 위해서는 무엇이 **함수형** 프로그램을 만드는지에 대해 어느정도 알고있어야합니다. 그렇지 않으면 목적을 잃고 헤메게 되고 들인 노력이 헛되게 될 것입니다. 우리는 코드를 살필 맑은 눈과 물이 거칠어 졌을 때를 대비한 나침반이 필요합니다.
 The purpose of this chapter is to give you a feel for what we're after when we write functional programs. In order to be able to understand the following chapters, we must have some idea about what makes a program _functional_. Otherwise we'll find ourselves scribbling aimlessly, avoiding objects at all costs - a clumsy endeavor indeed. We need a clear bullseye to hurl our code at, some celestial compass for when the waters get rough.
 
+여기 몇가지 일반적인 프로그래밍 법칙이 있어요: 애플리케이션의 어두운 터널를 안내하는 몇가지 약어들. DRY(반복하지 마라, don't repeat yourself), YAGNI(필요한 작업만 해라, ya ain't gonna need it), 낮은 결합도 높은 응집도, 최소한으로 놀라게 하라, 단일 책임 등등
 Now, there are some general programming principles - various acronymic credos that guide us through the dark tunnels of any application: DRY (don't repeat yourself), YAGNI (ya ain't gonna need it), loose coupling high cohesion, the principle of least surprise, single responsibility, and so on.
 
+저는 몇년간 들어온 모든 조언을 제시하면서 당신을 힘들게 하진 않을거에요... 요는 이것들은 우리의 궁극적인 목표에 접하고 있지만 함수형 세팅에서도 유효하다는 것이에요. 더 이상 나아가기 전에 당신이 느꼈으면 하는 것은 우리가 키보드를 찌르고 쑤실 때의 우리의 의도에요: 우리의 함수형 자나두(?)
 I won't belabor you by listing each and every guideline I've heard throughout the years... The point of the matter is that they hold up in a functional setting, although they're merely tangential to our ultimate goal. What I'd like you to get a feel for now, before we get any further, is our intention when we poke and prod at the keyboard; our functional Xanadu.
 
 <!--BREAK-->
 
-## 짧은 만남 A Brief Encounter
+## 짧은 만남
 
 약간 이상한 코드로 시작합시다. 여기 갈매기 어플리케이션이 있습니다. 무리들이 결합(cojoin)하면 더 큰 무리가 되고 새끼를 치면 다른 무리의 수만큼 곱해집니다. 이것은 좋은 객체지향 코드가 아니지만 우리의 할당에 기반한 현대적인 접근 방식의 위험을 강조하기 위한 코드입니다. 한번 보세요:
 Let's start with a touch of insanity. Here is a seagull application. When flocks conjoin they become a larger flock, and when they breed, they increase by the number of seagulls with whom they're breeding. Now, this is not intended to be good Object-Oriented code, mind you, it is here to highlight the perils of our modern, assignment based approach. Behold:
