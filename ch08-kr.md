@@ -96,16 +96,21 @@ Wait a minute, if we keep calling `map`, it appears to be some sort of compositi
 > Functor는 몇가지 규칙은 준수하는 `map`의 구현입니다.
 > A Functor is a type that implements `map` and obeys some laws
 
+맞아요, **펑터**는 하나의 계약이 있는 인터페이스입니다. 우리는 그냥 **Mappable**이라고 할 수도 있지만 일단 지금은 **fun**이 어디서 왔을까요? 펑터는 범주론(category theory)에서 왔고 이 장의 끝부분에서 수학적 디테일을 한번 볼 것이에요. 하지만 지금은 이 이상한 이름의 인터페이스의 직관과 실용적 사용에 관심을 둘 겁니다.
 Yes, _Functor_ is simply an interface with a contract. We could have just as easily named it _Mappable_, but now, where's the _fun_ in that? Functors come from category theory and we'll look at the maths in detail toward the end of the chapter, but for now, let's work on intuition and practical uses for this bizarrely named interface.
 
+왜 값을 상자에 넣고 또 `map`을 통해 함수를 사용할까요? 좀 더 좋은 질물 택한다면 답이 드러날게에요: 우리의 컴테이너에게 함수를 적용시켜달라고 함으로써 우리는 무엇을 얻는건가요? 함수를 `map`을 통해 적용시킬 때 우리는 컴테이너에게 우리를 위해 함수를 적용시켜달라고 요청합니다. 이것은 사실 매우 강력한 개념입니다.
 What reason could we possibly have for bottling up a value and using `map` to get at it? The answer reveals itself if we choose a better question: What do we gain from asking our container to apply functions for us? Well, abstraction of function application. When we `map` a function, we ask the container type to run it for us. This is a very powerful concept, indeed.
 
+## 슈뢰딩거의 아마도(Maybe)
 ## Schrödinger's Maybe
 
 <img src="images/cat.png" alt="cool cat, need reference" />
 
+`Container`는 좀 지루합니다. 사실 이것은 보통 `Identity`라고 불리고 우리의 `id`와 같은 영향력을 가집니다(다시한번 때가 되면 수학적 연결점을 다룰 것입니다). 그러나 또 다를 펑터도 있어요: container와 비슷하지만 매핑하는 동안 좀 더 유용한 행동을 하는 좀 더 적합한 `map`을 가지고 있어요. 한번 정의해 봅시다.
 `Container` is fairly boring. In fact, it is usually called `Identity` and has about the same impact as our `id` function (again there is a mathematical connection we'll look at when the time is right). However, there are other functors, that is, container-like types that have a proper `map` function, which can provide useful behaviour whilst mapping. Let's define one now.
 
+> 완전한 구현은 [Appendix B](./appendix_b-kr.md#Maybe)에 있습니다.
 > A complete implementation is given in the [Appendix B](./appendix_b.md#Maybe)
 
 ```js
@@ -132,6 +137,7 @@ class Maybe {
 }
 ```
 
+이제 `Maybe`는 `Container`와 한가지 사소한 점 빼고는 많이 비슷해보여요. 주어진 함수를 적용하기 전에 값을 가지고 있는지 확인하지요. 이건 우리가 `map`을 적용하면 성가신 null을 옆으로 피해가는 효과를 냅니다(이 구현은 설명을 위해 단순화되어있습니다).
 Now, `Maybe` looks a lot like `Container` with one minor change: it will first check to see if it has a value before calling the supplied function. This has the effect of side stepping those pesky nulls as we `map`(Note that this implementation is simplified for teaching).
 
 ```js
@@ -148,8 +154,10 @@ Maybe.of({ name: "Dinah", age: 14 }).map(prop("age")).map(add(10));
 // Just(24)
 ```
 
+null 값에 함수를 map 시켜도 오류를 내면서 망가지지 않는 다는 것을 주목하세요. 이건 함수를 적용할 때 마다 `Maybe`가 값을 확인하기 때문입니다.
 Notice our app doesn't explode with errors as we map functions over our null values. This is because `Maybe` will take care to check for a value each and every time it applies a function.
 
+이런 dot 문법은 완벽히 괜찮고 함수형이지만 파트 1에서 말했던 것 처럼 우리는 점이 없는 스타일을 고수할 거에요. 나타난 것 처럼 `map`은 어떤 펑터를 받는 이 펑터에게 일을 완전히 위임할 거에요.
 This dot syntax is perfectly fine and functional, but for reasons mentioned in Part 1, we'd like to maintain our pointfree style. As it happens, `map` is fully equipped to delegate to whatever functor it receives:
 
 ```js
@@ -157,10 +165,13 @@ This dot syntax is perfectly fine and functional, but for reasons mentioned in P
 const map = curry((f, anyFunctor) => anyFunctor.map(f));
 ```
 
+이것을 이용해 함수를 평소처럼 함성할 수 있고 `map`이 예상하는 것 처럼 동작하기 때문에 이것은 완전히 마음에 들군요. 이것은 ramda의 `map`의 경우와 같아요. 우리는 교육적인 목적에서 dot notaion을 사용할 것이고 또 편의에 따라 점이 없는 스타일을 사용할 것입니다. 당신은 알아챘나요? 저는 함수 타입 시그니쳐에 추가적인 notaion을 몰래 추가했어요. `Functor f =>`는 `f`가 펑터라는 것을 말합니다. 어렵지는 않지만 한 번 말하고 넘어가야 할 것 같았어요.
 This is delightful as we can carry on with composition per usual and `map` will work as expected. This is the case with ramda's `map` as well. We'll use dot notation when it's instructive and the pointfree version when it's convenient. Did you notice that? I've sneakily introduced extra notation into our type signature. The `Functor f =>` tells us that `f` must be a Functor. Not that difficult, but I felt I should mention it.
 
+## 용례
 ## Use Cases
 
+야생에서 `Maybe`가 반환하는 것을 실패할 가능성이 있는 함수에서 사용하는 것을 볼 것입니다.
 In the wild, we'll typically see `Maybe` used in functions which might fail to return a result.
 
 ```js
@@ -177,8 +188,10 @@ streetName({ addresses: [{ street: "Shady Ln.", number: 4201 }] });
 // Just('Shady Ln.')
 ```
 
+`safeHead`는 보통의 `head`와 비슷하지만 타입 안전성이 추가됐습니다. 코드에 `Maybe`를 사용하면 흥미로운 일이 일어나요: 우리는 비열한 `null`을 다루도록 강제됩니다. `safeHead` 함수는 정직하고 자신이 실패할 수 있다고 솔직하게 말합니다 - 실패를 부끄러워 할 필요는 없고 - 따라서 `Maybe`를 반환하므로써 이를 알립니다. 하지만 그저 **알림 받는**것에 그치지 않아요: 왜냐하면 우리가 원하는 값은 `Maybe`에 갇혀있기 때문에 값을 사용하려면 `map`을 이용해야 해요. 본질적으로 이것은 `safeHead` 함수 스스로가 `null` 체크를 하고록 하는 것입니다. 이제 우리는 예상하지 않을 때에 `null` 값이 그의 못생기고 참수된 머리를 드러내지 않을 것이란 것을 알면서 밤에 편히 잠을 잘 수 있어요. 이와 같은 API들은 부서지기 쉬운 애플리케이션을 종이와 압정에서 나무와 못으로 업그레이드시킬 거에요. 우리는 더 안전한 소프트웨어를 만들 수 있습니다.
 `safeHead` is like our normal `head`, but with added type safety. A curious thing happens when `Maybe` is introduced into our code; we are forced to deal with those sneaky `null` values. The `safeHead` function is honest and up front about its possible failure - there's really nothing to be ashamed of - and so it returns a `Maybe` to inform us of this matter. We are more than merely _informed_, however, because we are forced to `map` to get at the value we want since it is tucked away inside the `Maybe` object. Essentially, this is a `null` check enforced by the `safeHead` function itself. We can now sleep better at night knowing a `null` value won't rear its ugly, decapitated head when we least expect it. APIs like this will upgrade a flimsy application from paper and tacks to wood and nails. They will guarantee safer software.
 
+가끔 함수는 실패를 명시적으로 드러내면서 `Nothing`을 반환할 수도 있어요. 다음처럼요.
 Sometimes a function might return a `Nothing` explicitly to signal failure. For instance:
 
 ```js
@@ -187,11 +200,13 @@ const withdraw = curry((amount, { balance }) =>
   Maybe.of(balance >= amount ? { balance: balance - amount } : null)
 );
 
+// 이 함수는 예시입니다. 여기서 구현되지 않고 다른곳에서도...
 // This function is hypothetical, not implemented here... nor anywhere else.
 // updateLedger :: Account -> Account
 const updateLedger = (account) => account;
 
 // remainingBalance :: Account -> String
+const remainingBalance = ({ balance }) => `당신의 잔고는 ${balance}원 입니다.`;
 const remainingBalance = ({ balance }) => `Your balance is $${balance}`;
 
 // finishTransaction :: Account -> String
@@ -207,14 +222,19 @@ getTwenty({ balance: 10.0 });
 // Nothing
 ```
 
+`withdraw`는 우리가 돈이 없을 경우 우리에게 콧대를 드리밀고 `Nothing`을 반환할 거에요. 이 함수는 또한 그 자신의 변덕스러움을 소통할 것이고 우리에게 어떤 선택지도 주지 않을거지만 그 후의 모든것을 `map`할거에요. 여기서 차이점은 `null`이 의도적으로 사용되었다는 것입니다. `Just('..')` 대신에 실패했다는 신호로 우리는 `Nothing`을 받을 거에요. 그리고 애플리케이션은 효과적으로 그 진행을 멈출겁니다. 만약 `withgraw`가 실패한다면 `map`은 주어진 나머지 함수를 호출하지 않고 더 나아가지 않을 것이라는 것을 주목해야합니다. 여기서는 `finishTransaction` 함수지요. 인출이 성공적으로 끝나지 않으면 장부를 업데이트하거나 새로운 잔고를 보여주는 것을 원치 않기 때문에 이건 정확히 우리가 원하는 작동이에요.
 `withdraw` will tip its nose at us and return `Nothing` if we're short on cash. This function also communicates its fickleness and leaves us no choice, but to `map` everything afterwards. The difference is that the `null` was intentional here. Instead of a `Just('..')`, we get the `Nothing` back to signal failure and our application effectively halts in its tracks. This is important to note: if the `withdraw` fails, then `map` will sever the rest of our computation since it doesn't ever run the mapped functions, namely `finishTransaction`. This is precisely the intended behaviour as we'd prefer not to update our ledger or show a new balance if we hadn't successfully withdrawn funds.
 
+## 값을 해방시키기
 ## Releasing the Value
 
+사람들은 자주 언제나 줄의 끝에는 어떤 효과를 내는 함수가 있다는 것을 잊곤 해요. 이 함수는 JSON을 보내거나 화면에 출력하거나 파일 시스템을 바꾸거나 다른 것을 하죠. 값을 `return`하는 것 만으론 출력을 전달할 수는 없어요. 반드시 어떤 함수를 실행하거나 세상 밖으로 보내는 어떤 것을 해야하죠. 이를 선불교의 하나의 선문답처럼 말할 수도 있어요. "만약 프로그램이 관측 가능한 어떤 효과를 만들지 않는다면, 이 함수가 실행된 것일까?". 함수가 만족스럽게 잘 실행된 것인가? 저는 그저 몇개의 사이클을 태우고 다시 자러간 것이 아닌지 의심하곤 해요.
 One thing people often miss is that there will always be an end of the line; some effecting function that sends JSON along, or prints to the screen, or alters our filesystem, or what have you. We cannot deliver the output with `return`, we must run some function or another to send it out into the world. We can phrase it like a Zen Buddhist koan: "If a program has no observable effect, does it even run?". Does it run correctly for its own satisfaction? I suspect it merely burns some cycles and goes back to sleep...
 
+애플리케이션은 안녕이라고 말할 때 까지 데이터를 받고 변경하고 다른 곳으로 나르지요. 그러는동아 함수는 수도없이 map 되고 값은 그 컨테이너의 따뜻한 자궁속에 있을 필요가 없어요. 사실 보통의 오류는 `Maybe`에서 마치 내부의 값이 갑자기 실현되고 용서받은 것 처럼 값을 제거하면서 일어나요(?). 우리의 값이 생을 마칠때 까지 머물 곳이 코드의 한 가지가 아니란 것을 이해해야해요(?). 우리의 코드는 슈뢰딩어의 고양이처럼 동시에 두개의 상태에 있고 마지막 함수까지 사실을 유지해야해요. 이것은 논리적인 분기에도 불구하고 우리의 코드에게 선형적인 흐름을 줍니다.
 Our application's job is to retrieve, transform, and carry that data along until it's time to say goodbye and the function which does so may be mapped, thus the value needn't leave the warm womb of its container. Indeed, a common error is to try to remove the value from our `Maybe` one way or another as if the possible value inside will suddenly materialize and all will be forgiven. We must understand it may be a branch of code where our value is not around to live up to its destiny. Our code, much like Schrödinger's cat, is in two states at once and should maintain that fact until the final function. This gives our code a linear flow despite the logical branching.
 
+그러나 이 것은 탈출구에요. 만약 우리가 커스텀 값을 반환하고 계속 진행한다면 우리는 `maybe`라고 불리는 작은 도우미를 사용할 것이에요.
 There is, however, an escape hatch. If we would rather return a custom value and continue on, we can use a little helper called `maybe`.
 
 ```js
@@ -240,6 +260,7 @@ getTwenty({ balance: 10.0 });
 // 'You\'re broke!'
 ```
 
+이제 우리는 `finishTransaction`이 반환하는 것과 같은 정적인 값을 얻거나 `Maybe`없이 즐겁게 거래를 이어나갈 겁니다. `maybe`와 함께라면 우리는 `if/else` 대신 `map`을 통해 같은 것을 할 수 있어요. `if/else`를 사용한다면 `if (x !== null) { return f(x) }`가 되겠죠.
 We will now either return a static value (of the same type that `finishTransaction` returns) or continue on merrily finishing up the transaction sans `Maybe`. With `maybe`, we are witnessing the equivalent of an `if/else` statement whereas with `map`, the imperative analog would be: `if (x !== null) { return f(x) }`.
 
 The introduction of `Maybe` can cause some initial discomfort. Users of Swift and Scala will know what I mean as it's baked right into the core libraries under the guise of `Option(al)`. When pushed to deal with `null` checks all the time (and there are times we know with absolute certainty the value exists), most people can't help but feel it's a tad laborious. However, with time, it will become second nature and you'll likely appreciate the safety. After all, most of the time it will prevent cut corners and save our hides.
