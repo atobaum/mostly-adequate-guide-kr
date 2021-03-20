@@ -1,16 +1,12 @@
-# Chapter 08: Tupperware
+# 8장: 밀폐용기
 
 ## 위대한 컨테이너
 
-## The Mighty Container
-
 <img src="images/jar.jpg" alt="http://blog.dwinegar.com/2011/06/another-jar.html" />
 
-우리는 순수함수들을 직렬로 연결하는 프로그램을 만드는 법을 봤어요. 그들은 해야할 행동을 서술해요. 그런데 제어 흐름, 오류 처리, 비동기 액션, 상태, 그러니까 이펙트는 어떻게 하나요? 이 장에서 우리는 이 도움되는 모든 추상화가 지어진 기반을 발견할 것입니다.
-We've seen how to write programs which pipe data through a series of pure functions. They are declarative specifications of behaviour. But what about control flow, error handling, asynchronous actions, state and, dare I say, effects?! In this chapter, we will discover the foundation upon which all of these helpful abstractions are built.
+우리는 순수함수들을 연달이 연결해서 프로그램을 만드는 법을 봤어요. 프로그램이 해야할 행동을 선언하죠. 그런데 제어 흐름, 오류 처리, 비동기 액션, 상태, 그러니까 이펙트는 어떻게 다룰까요? 이 장에서 우리는 이걸 도와주는 추상화의 기반을 배울 것입니다.
 
-먼저 우리는 컨테이너를 하나 만들거에요. 이 컨테이너는 어떤 타입의 값을 하나 담고있어요; 타피오카 푸딩만을 담을 수 있는 지퍼백은 그다지 유용하지 않지요. 이것은 하나의 객체가 되겠지만 객체지향 관점의 프로퍼티나 메서드는 하나도 가지지 않을거에요. 아니요, 우리는 이것을 보물상자처럼 다룰거에요-우리의 소중한 데이터를 담고있는 특별한 상자
-First we will create a container. This container must hold any type of value; a ziplock that holds only tapioca pudding is rarely useful. It will be an object, but we will not give it properties and methods in the OO sense. No, we will treat it like a treasure chest - a special box that cradles our valuable data.
+먼저 우리는 컨테이너를 하나 만들거에요. 이 컨테이너는 어떤 값을 하나 담을 수 있어요. 값의 타입은 상관없어요. 타피오카 푸딩만을 담을 수 있는 지퍼백은 그다지 유용하지 않잖아요. 이것은 객체지만 객체지향 프로그램에서 말하는 프로퍼티나 메서드는 가지지 않을거에요. 대신 소중한 데이터를 담고있는 보물상자처럼 다룰거에요.
 
 ```js
 class Container {
@@ -24,11 +20,9 @@ class Container {
 }
 ```
 
-이것이 우리의 첫번째 상자입니다. 우리는 고심해서 이것을 `Container`라고 이름지었어요. `Container.of`를 사용하면 매번 끔찍한 `new` 키워드를 사용할 필요가 없을거에요. `of` 함수에는 눈에 보이는 것 보다 많은 것이 숨겨져 있지만 지금은 그냥 우리의 상자에 값을 넣는 좋은 방법이라고만 생각하세요.
-Here is our first container. We've thoughtfully named it `Container`. We will use `Container.of` as a constructor which saves us from having to write that awful `new` keyword all over the place. There's more to the `of` function than meets the eye, but for now, think of it as the proper way to place values into our container.
+이것이 우리의 첫번째 컨테이너입니다. 고심해서 이것을 `Container`라고 지었어요. `Container.of`를 사용하면 매번 끔찍한 `new` 키워드를 사용할 필요가 없어요. `of` 함수에는 눈에 보이는 것 보다 많은 것이 숨겨져 있지만 지금은 그냥 우리의 상자에 값을 넣는 좋은 방법이라고만 생각하세요.
 
-새로 가지게 된 상자를 살펴봅시다.
-Let's examine our brand new box...
+새로 얻은 컨테이너를 살펴봅시다.
 
 ```js
 Container.of(3);
@@ -41,27 +35,18 @@ Container.of(Container.of({ name: "yoda" }));
 // Container(Container({ name: 'yoda' }))
 ```
 
-만약 노드를 사용하고 있다면 우리가 `Container(x)`를 사용하고 있기는 하지만 `{$value: x}`를 보게 될 거에요. 크롬은 타입을 제대로 출력해주겠지만 상관없지요. 우리가 `Container`가 어떻게 생겨먹었는지 이해하고 있으면 됩니다. 어떤 환경에서는 당신이 원한다면 `inspect`를 다시 정의할 수 있을 거에요. 하지만 그렇게 하지는 않을 거에요. 이 책에서 우리는 `inspect`를 덮어쓴 것처럼 개념상 출력을 적을거에요. 이 것이 `{$value: X}`라고 쓰는 것 보다 훨씬 더 아름답고 교육적인 목적에서도 더 알맞을 테니까요.
-If you are using node, you will see `{$value: x}` even though we've got ourselves a `Container(x)`. Chrome will output the type properly, but no matter; as long as we understand what a `Container` looks like, we'll be fine. In some environments you can overwrite the `inspect` method if you'd like, but we will not be so thorough. For this book, we will write the conceptual output as if we'd overwritten `inspect` as it's much more instructive than `{$value: x}` for pedagogical as well as aesthetic reasons.
+만약 node에서는 `{$value: x}`라고 표시되겠지만 `Container`가 어떻게 생겼는지만 이해하고 있으면 됩니다. 어떤 환경에서는 원한다면 `inspect`를 다시 정의할 수도 있지만 그렇게 하지는 않을 거에요. 이 책에서 우리는 `inspect`를 덮어쓴 것처럼 개념을 적을거에요. `{$value: X}`라고 쓰는 것 보다 훨씬 더 아름답고 이해하기 쉬울테니까요.
 
 더 나아가기 전에 몇가지를 살펴볼까요.
-Let's make a few things clear before we move on:
 
-- `Container`는 하나의 속성을 갖는 객체입니다. 많은 컨테이너들이 하나만 담는 것에 제한되지는 않지만 그냥 하나만 담고있어요. 컨테이너가 가지고 있는 속성을 `$value`라고 이름 짖겠습니다.
-- `Container` is an object with one property. Lots of containers just hold one thing, though they aren't limited to one. We've arbitrarily named its property `$value`.
-
-- `$value`는 한가지 특정한 타입만 나타내지는 않아요. 그렇지 않으면 `Container`는 그 이름에 걸맞지 않을 거에요.
-- The `$value` cannot be one specific type or our `Container` would hardly live up to the name.
-
+- `Container`는 하나의 속성을 갖는 객체입니다. 다른 컨테이너들이 하나만 담는 것에 제한되지는 않지만 보통 하나만 담고있어요. 컨테이너가 가지고 있는 속성을 `$value`라고 이름 짖겠습니다.
+- `$value`는 특정한 한가지 타입만 나타내지는 않아요. 그러면 `Container`는 그 이름에 걸맞지 않을 거에요.
 - 값이 한번 `Container`에 들어가면 그 안에서 살것입니다. 우리는 `.$value`를 사용해서 밖으로 **꺼낼 수** 있겠지만 우리의 목적을 해칠 것입니다.
-- Once data goes into the `Container` it stays there. We _could_ get it out by using `.$value`, but that would defeat the purpose.
 
 이것들을 지금 말하는 것은 mason jar처럼 명백해질것이지만 지금은 일단 버티세요(?)
 The reasons we're doing this will become clear as a mason jar, but for now, bear with me.
 
 ## 첫 펑터
-
-## My First Functor
 
 어떤 것이든 일단 값이 컨테이너에 있으면 이 값에 대해 함수를 실행할 방법이 필요할 거에요.
 Once our value, whatever it may be, is in the container, we'll need a way to run functions on it.
@@ -263,18 +248,24 @@ getTwenty({ balance: 10.0 });
 이제 우리는 `finishTransaction`이 반환하는 것과 같은 정적인 값을 얻거나 `Maybe`없이 즐겁게 거래를 이어나갈 겁니다. `maybe`와 함께라면 우리는 `if/else` 대신 `map`을 통해 같은 것을 할 수 있어요. `if/else`를 사용한다면 `if (x !== null) { return f(x) }`가 되겠죠.
 We will now either return a static value (of the same type that `finishTransaction` returns) or continue on merrily finishing up the transaction sans `Maybe`. With `maybe`, we are witnessing the equivalent of an `if/else` statement whereas with `map`, the imperative analog would be: `if (x !== null) { return f(x) }`.
 
+`Maybe`를 처음에 사용하기는 불편할 수 있어요. Swift나 Scala를 사용한다면 코어 라이브러리에서 `Option(al)`이라는 이름으로 이미 있기 때문에 제가 무슨말을 하는지 알 수 있을 거에요. 매번 `null` 체크를 하는 일(가끔 반드시 값이 있다고 확신할 수 있음에도)은 대부분의 사람들은 어쩔수 없이 약간 귀찮은 일이라고 느낄거게요. 그러나 세월이 가면서 자연스럽게 되고 이 안전함을 고마워할 거에요. 무엇보다도 이것은 코너 케이스를 막아주고 우리의 하이드 박사를 지켜줄 거에요.
 The introduction of `Maybe` can cause some initial discomfort. Users of Swift and Scala will know what I mean as it's baked right into the core libraries under the guise of `Option(al)`. When pushed to deal with `null` checks all the time (and there are times we know with absolute certainty the value exists), most people can't help but feel it's a tad laborious. However, with time, it will become second nature and you'll likely appreciate the safety. After all, most of the time it will prevent cut corners and save our hides.
 
+안전하지 않은 소프트웨어를 만드는 것은 달걀을 도로에 던지기 전에 조심스럽게 파스텔로 색칠하려는 것과 같아요: 마치 아기돼지 삼형제가 경고했던 물질로 은퇴 주택을 짓는 것 처럼요. 함수를 어느정도 안전하게 하는 것는 우리에게 도움이 될 것이고, `Maybe`가 이걸 도와줄 거에요.
 Writing unsafe software is like taking care to paint each egg with pastels before hurling it into traffic; like building a retirement home with materials warned against by three little pigs. It will do us well to put some safety into our functions and `Maybe` helps us do just that.
 
+이걸 말하지 않을 뻔 했네요: `Maybe`를 구현할 때 두가지 타입으로 나뉘게 될 거에요: 하나는 뭔가 있는 것이고 다른 하나는 없는 것 이지요. 이를 통해 `map`이 parametricity를 지킬 수 있게 하고 `null`이나 `undefined`같는 값도 map됄 수 있고  the universal qualification of the value in a functor will be respected. 당신은 `null` 체크를 하는 `Maybe` 대신 `Some(x) / None` 이나 `Just(x) / Nothing` 같은 타입을 보통 보게될 거에요.
 I'd be remiss if I didn't mention that the "real" implementation will split `Maybe` into two types: one for something and the other for nothing. This allows us to obey parametricity in `map` so values like `null` and `undefined` can still be mapped over and the universal qualification of the value in a functor will be respected. You'll often see types like `Some(x) / None` or `Just(x) / Nothing` instead of a `Maybe` that does a `null` check on its value.
 
+## 순수한 오류 처리
 ## Pure Error Handling
 
 <img src="images/fists.jpg" alt="pick a hand... need a reference" />
 
+놀랍게도 `throw/catch`는 순수하지 않이요. 오류가 throw되면 값을 반환하는 대신 알람을 듣게 되요! 함수는 전기전쟁의 창과 방패처럼 우리의 침입하는 입력에 대항해 수많은 0과 1을 뱉어냅니다. 하지만 우리의 새친구 `Either`와 함께라면 전쟁을 선포하는 대신 좀 더 신사적인 메시지로 답할 수 있어요. 한번 봅시다.
 It may come as a shock, but `throw/catch` is not very pure. When an error is thrown, instead of returning an output value, we sound the alarms! The function attacks, spewing thousands of 0s and 1s like shields and spears in an electric battle against our intruding input. With our new friend `Either`, we can do better than to declare war on input, we can respond with a polite message. Let's take a look:
 
+> 완전한 구현은  [부록 B](./부록_b.md#Either)에 있습니다.
 > A complete implementation is given in the [Appendix B](./appendix_b.md#Either)
 
 ```js
@@ -311,6 +302,7 @@ class Right extends Either {
 const left = (x) => new Left(x);
 ```
 
+`Left`와 `Rifht`는 추상 타입 `Either`의 서브 클레스입니다. `Either`을 사용하지는 않을 것이기 때문에 따로 축하를 하지는 않을거에요. 이제 두 타입 빼고 특별한것은 없어요. 어떻게 사용하는지 봅시다.
 `Left` and `Right` are two subclasses of an abstract type we call `Either`. I've skipped the ceremony of creating the `Either` superclass as we won't ever use it, but it's good to be aware. Now then, there's nothing new here besides the two types. Let's see how they act:
 
 ```js
@@ -327,8 +319,10 @@ left("rolls eyes...").map(prop("host"));
 // Left('rolls eyes...')
 ```
 
+`Left`는 십대처럼 `map` 해달라는 우리의 요청을 무시합니다. `Right`는 `Container` (다를 말로 Identity) 와 똑같이 행동합니다. 오류를 `Left`에 담을 수 있다는 점이 강점이지요.
 `Left` is the teenagery sort and ignores our request to `map` over it. `Right` will work just like `Container` (a.k.a Identity). The power comes from the ability to embed an error message within the `Left`.
 
+실패할 수 있는 함수를 생각해볼까요? 생일에서 나이를 어떻게 알 수 있을까요? `Nothing`을 이용해 실패를 나타내고 분기를 할 수 있지만 많은 것을 말하지는 않죠. 아마 실패한 이유를 알고 싶어질 수도 있겠죠. `Either`를 이용해봅시다.
 Suppose we have a function that might not succeed. How about we calculate an age from a birth date. We could use `Nothing` to signal failure and branch our program, however, that doesn't tell us much. Perhaps, we'd like to know why it failed. Let's write this using `Either`.
 
 ```js
@@ -350,6 +344,7 @@ getAge(moment(), { birthDate: "July 4, 2001" });
 // Left('Birth date could not be parsed')
 ```
 
+`Nothing`처럼 `Left`를 반환하고 나서 앱을 멈춤니다. 차이점는 이제 왜 프로그램이 실패했는지에 대한 단서를 알 수 있다는 것이죠. 왼쪽 값으로 `String`을 가지고 오른쪽 값으로 `Number`를 가지는 `Either(String, Number)`를 반환한다는 것을 주목해야해요. 실제로 `Either`를 구현하지 안아서 약간 비공식적이지만 그래도 타입에서 많은 것을 배울 수 있어요. 오류 메시지나 나이를 받는다는 것을 알 수 있어요.
 Now, just like `Nothing`, we are short-circuiting our app when we return a `Left`. The difference, is now we have a clue as to why our program has derailed. Something to notice is that we return `Either(String, Number)`, which holds a `String` as its left value and a `Number` as its `Right`. This type signature is a bit informal as we haven't taken the time to define an actual `Either` superclass, however, we learn a lot from the type. It informs us that we're either getting an error message or the age back.
 
 ```js
@@ -371,8 +366,10 @@ zoltar({ birthDate: "balloons!" });
 // Left('Birth date could not be parsed')
 ```
 
+`birthDate`가 유효하면 프로그램은 신비로운 점괘를 화면을 통해 말해줄거에요. 그렇지 않으면 오류 메시지가 담긴 `Left`를 받게 될 것입니다. 우리가 오류를 던지는 것과 똑같이 작동하지만 어떤 일이 잘못되었을 때 화를 내고 어린아이처럼 소리를 지르는 것과는 대조적으로 침착하고 온화한 방식으로 말합니다.
 When the `birthDate` is valid, the program outputs its mystical fortune to the screen for us to behold. Otherwise, we are handed a `Left` with the error message plain as day though still tucked away in its container. That acts just as if we'd thrown an error, but in a calm, mild manner fashion as opposed to losing its temper and screaming like a child when something goes wrong.
 
+이 예제에서 생일의 유효성에 따라 제어 흐름을 논리적으로 분기합니다.
 In this example, we are logically branching our control flow depending on the validity of the birth date, yet it reads as one linear motion from right to left rather than climbing through the curly braces of a conditional statement. Usually, we'd move the `console.log` out of our `zoltar` function and `map` it at the time of calling, but it's helpful to see how the `Right` branch differs. We use `_` in the right branch's type signature to indicate it's a value that should be ignored (In some browsers you have to use `console.log.bind(console)` to use it first class).
 
 I'd like to take this opportunity to point out something you may have missed: `fortune`, despite its use with `Either` in this example, is completely ignorant of any functors milling about. This was also the case with `finishTransaction` in the previous example. At the time of calling, a function can be surrounded by `map`, which transforms it from a non-functory function to a functory one, in informal terms. We call this process _lifting_. Functions tend to be better off working with normal data types rather than container types, then _lifted_ into the right container as deemed necessary. This leads to simpler, more reusable functions that can be altered to work with any functor on demand.
