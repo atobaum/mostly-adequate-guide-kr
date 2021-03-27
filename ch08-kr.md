@@ -88,6 +88,7 @@ Yes, _Functor_ is simply an interface with a contract. We could have just as eas
 What reason could we possibly have for bottling up a value and using `map` to get at it? The answer reveals itself if we choose a better question: What do we gain from asking our container to apply functions for us? Well, abstraction of function application. When we `map` a function, we ask the container type to run it for us. This is a very powerful concept, indeed.
 
 ## 슈뢰딩거의 아마도(Maybe)
+
 ## Schrödinger's Maybe
 
 <img src="images/cat.png" alt="cool cat, need reference" />
@@ -154,6 +155,7 @@ const map = curry((f, anyFunctor) => anyFunctor.map(f));
 This is delightful as we can carry on with composition per usual and `map` will work as expected. This is the case with ramda's `map` as well. We'll use dot notation when it's instructive and the pointfree version when it's convenient. Did you notice that? I've sneakily introduced extra notation into our type signature. The `Functor f =>` tells us that `f` must be a Functor. Not that difficult, but I felt I should mention it.
 
 ## 용례
+
 ## Use Cases
 
 야생에서 `Maybe`가 반환하는 것을 실패할 가능성이 있는 함수에서 사용하는 것을 볼 것입니다.
@@ -211,6 +213,7 @@ getTwenty({ balance: 10.0 });
 `withdraw` will tip its nose at us and return `Nothing` if we're short on cash. This function also communicates its fickleness and leaves us no choice, but to `map` everything afterwards. The difference is that the `null` was intentional here. Instead of a `Just('..')`, we get the `Nothing` back to signal failure and our application effectively halts in its tracks. This is important to note: if the `withdraw` fails, then `map` will sever the rest of our computation since it doesn't ever run the mapped functions, namely `finishTransaction`. This is precisely the intended behaviour as we'd prefer not to update our ledger or show a new balance if we hadn't successfully withdrawn funds.
 
 ## 값을 해방시키기
+
 ## Releasing the Value
 
 사람들은 자주 언제나 줄의 끝에는 어떤 효과를 내는 함수가 있다는 것을 잊곤 해요. 이 함수는 JSON을 보내거나 화면에 출력하거나 파일 시스템을 바꾸거나 다른 것을 하죠. 값을 `return`하는 것 만으론 출력을 전달할 수는 없어요. 반드시 어떤 함수를 실행하거나 세상 밖으로 보내는 어떤 것을 해야하죠. 이를 선불교의 하나의 선문답처럼 말할 수도 있어요. "만약 프로그램이 관측 가능한 어떤 효과를 만들지 않는다면, 이 함수가 실행된 것일까?". 함수가 만족스럽게 잘 실행된 것인가? 저는 그저 몇개의 사이클을 태우고 다시 자러간 것이 아닌지 의심하곤 해요.
@@ -254,10 +257,11 @@ The introduction of `Maybe` can cause some initial discomfort. Users of Swift an
 안전하지 않은 소프트웨어를 만드는 것은 달걀을 도로에 던지기 전에 조심스럽게 파스텔로 색칠하려는 것과 같아요: 마치 아기돼지 삼형제가 경고했던 물질로 은퇴 주택을 짓는 것 처럼요. 함수를 어느정도 안전하게 하는 것는 우리에게 도움이 될 것이고, `Maybe`가 이걸 도와줄 거에요.
 Writing unsafe software is like taking care to paint each egg with pastels before hurling it into traffic; like building a retirement home with materials warned against by three little pigs. It will do us well to put some safety into our functions and `Maybe` helps us do just that.
 
-이걸 말하지 않을 뻔 했네요: `Maybe`를 구현할 때 두가지 타입으로 나뉘게 될 거에요: 하나는 뭔가 있는 것이고 다른 하나는 없는 것 이지요. 이를 통해 `map`이 parametricity를 지킬 수 있게 하고 `null`이나 `undefined`같는 값도 map됄 수 있고  the universal qualification of the value in a functor will be respected. 당신은 `null` 체크를 하는 `Maybe` 대신 `Some(x) / None` 이나 `Just(x) / Nothing` 같은 타입을 보통 보게될 거에요.
+이걸 말하지 않을 뻔 했네요: `Maybe`를 구현할 때 두가지 타입으로 나뉘게 될 거에요: 하나는 뭔가 있는 것이고 다른 하나는 없는 것 이지요. 이를 통해 `map`이 parametricity를 지킬 수 있게 하고 `null`이나 `undefined`같는 값도 map됄 수 있고 the universal qualification of the value in a functor will be respected. 당신은 `null` 체크를 하는 `Maybe` 대신 `Some(x) / None` 이나 `Just(x) / Nothing` 같은 타입을 보통 보게될 거에요.
 I'd be remiss if I didn't mention that the "real" implementation will split `Maybe` into two types: one for something and the other for nothing. This allows us to obey parametricity in `map` so values like `null` and `undefined` can still be mapped over and the universal qualification of the value in a functor will be respected. You'll often see types like `Some(x) / None` or `Just(x) / Nothing` instead of a `Maybe` that does a `null` check on its value.
 
 ## 순수한 오류 처리
+
 ## Pure Error Handling
 
 <img src="images/fists.jpg" alt="pick a hand... need a reference" />
@@ -265,7 +269,7 @@ I'd be remiss if I didn't mention that the "real" implementation will split `May
 놀랍게도 `throw/catch`는 순수하지 않이요. 오류가 throw되면 값을 반환하는 대신 알람을 듣게 되요! 함수는 전기전쟁의 창과 방패처럼 우리의 침입하는 입력에 대항해 수많은 0과 1을 뱉어냅니다. 하지만 우리의 새친구 `Either`와 함께라면 전쟁을 선포하는 대신 좀 더 신사적인 메시지로 답할 수 있어요. 한번 봅시다.
 It may come as a shock, but `throw/catch` is not very pure. When an error is thrown, instead of returning an output value, we sound the alarms! The function attacks, spewing thousands of 0s and 1s like shields and spears in an electric battle against our intruding input. With our new friend `Either`, we can do better than to declare war on input, we can respond with a polite message. Let's take a look:
 
-> 완전한 구현은  [부록 B](./부록_b.md#Either)에 있습니다.
+> 완전한 구현은 [부록 B](./부록_b.md#Either)에 있습니다.
 > A complete implementation is given in the [Appendix B](./appendix_b.md#Either)
 
 ```js
@@ -369,15 +373,19 @@ zoltar({ birthDate: "balloons!" });
 `birthDate`가 유효하면 프로그램은 신비로운 점괘를 화면을 통해 말해줄거에요. 그렇지 않으면 오류 메시지가 담긴 `Left`를 받게 될 것입니다. 우리가 오류를 던지는 것과 똑같이 작동하지만 어떤 일이 잘못되었을 때 화를 내고 어린아이처럼 소리를 지르는 것과는 대조적으로 침착하고 온화한 방식으로 말합니다.
 When the `birthDate` is valid, the program outputs its mystical fortune to the screen for us to behold. Otherwise, we are handed a `Left` with the error message plain as day though still tucked away in its container. That acts just as if we'd thrown an error, but in a calm, mild manner fashion as opposed to losing its temper and screaming like a child when something goes wrong.
 
-이 예제에서 생일의 유효성에 따라 제어 흐름을 논리적으로 분기합니다.
+이 예제에서 생일의 유효성에 따라 제어 흐름을 논리적으로 분기합니다. 이제 연속된 괄호와 조건문의 산을 오르지않고 오른쪽에서 왼쪽으로 순차적으로 읽을 수 있어요. 보통 `zoltar` 함수에서 `console.log`를 밖으로 빼고 필요할 때 `map`을 하죠. 오른쪽 분기의 타입이 무시할 수 있다는 걸 표시하기위해 `_`를 사용합니다(어떤 브라우저에서는 일급 함수로 사용하기 위해 `console.log.bind(console)`를 사용해야합니다).
 In this example, we are logically branching our control flow depending on the validity of the birth date, yet it reads as one linear motion from right to left rather than climbing through the curly braces of a conditional statement. Usually, we'd move the `console.log` out of our `zoltar` function and `map` it at the time of calling, but it's helpful to see how the `Right` branch differs. We use `_` in the right branch's type signature to indicate it's a value that should be ignored (In some browsers you have to use `console.log.bind(console)` to use it first class).
 
+당신이 한가지 놓칠 수 있는 것을 말할 기회인 것 같아요. 이 예제에서 `Either`를 사용하지만 `fortune`은 관련된 어떠한 펑터에대해서 모르고있어요. 전 예제의 `finishTransaction`도 같아요. 호출할 때에 함수를 펑터가 아닌 함수를 펑터에 적용하는 함수로 바꾸는 `map`으로 감쌀 수 있어요. 이 과정을 **들어올리기(lift)**라고 합니다. 함수는 컨테이너에 적용되는 함수보다 일반적인 데이터 타입에 더 잘 작동하는 경향을 가지고 있어요. 그리고 필요할 때에 맞는 컨테이너로 **들어 올려질 수** 있어요. 이를 통해 더 간단하고 재사용 가능한, 필요할때 어떠한 펑터에도 적용할 수 있는 함수를 만들 수 있어요.
 I'd like to take this opportunity to point out something you may have missed: `fortune`, despite its use with `Either` in this example, is completely ignorant of any functors milling about. This was also the case with `finishTransaction` in the previous example. At the time of calling, a function can be surrounded by `map`, which transforms it from a non-functory function to a functory one, in informal terms. We call this process _lifting_. Functions tend to be better off working with normal data types rather than container types, then _lifted_ into the right container as deemed necessary. This leads to simpler, more reusable functions that can be altered to work with any functor on demand.
 
+`Either`는 값을 검사하는 간단한 오류 뿐만 아니라 좀 더 심각한 오류에도 적합하고 파일이 없거나 소켓이 깨져서 생기는 오류를 막을 수 있어요. `Maybe`를 `Either`로 바꿔 좀 더 좋은 피드백을 주도록 해보세요.
 `Either` is great for casual errors like validation as well as more serious, stop the show errors like missing files or broken sockets. Try replacing some of the `Maybe` examples with `Either` to give better feedback.
 
+이제 `Either`가 단순히 오류 메시지를 위한 컨테이너로 소개해 폐를 끼쳤다는 느낌을 피할 수 없군요. 이것은 논리합(`||`)을 표현한 타입입니다. 또한 범주론의 **Coproduct**의 아이디어를 담고 있습니다(이 책에서는 다루지 않지만 이용할만한 속성이 있기 때문에 한번 공부해볼만 합니다). 이것의 가능한 개수는 두 타입의 개수의 합이기 때문에 canonical sum type(또는 집합의 disjoint union)입니다. 설명이 약간 부족한 것 같지만 여기 [좋은 글](https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/sum-types)을 소개합니다. `Either`가 할 수 있는 일은 많지만 펑터로서 오류처리를 위해 사용됩니다.
 Now, I can't help but feel I've done `Either` a disservice by introducing it as merely a container for error messages. It captures logical disjunction (a.k.a `||`) in a type. It also encodes the idea of a _Coproduct_ from category theory, which won't be touched on in this book, but is well worth reading up on as there's properties to be exploited. It is the canonical sum type (or disjoint union of sets) because its amount of possible inhabitants is the sum of the two contained types (I know that's a bit hand wavy so here's a [great article](https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/sum-types)). There are many things `Either` can be, but as a functor, it is used for its error handling.
 
+`Maybe`처럼 비슷하게 행동하지만 한가지 값을 받지 않고 함수를 두게 받는 소문자 `either`도 있습니다. 그리고 둘 다 같은 타입을 반환합니다.
 Just like with `Maybe`, we have little `either`, which behaves similarly, but takes two functions instead of one and a static value. Each function should return the same type:
 
 ```js
@@ -412,12 +420,16 @@ zoltar({ birthDate: "balloons!" });
 // undefined
 ```
 
+마지막으로 미지의 `id` 함수가 남았습니다. 이 함수는 단순히 `Left` 에 있는 오류 메시지를 `console.log`로 전달합니다. `getAge`가 만드는 오류를 다루면서 운세를 말해주는 프로그램을 더 단단하게 만들었습니다. 우리는 손금 판독기의 하이파이브와 같은 진리를 말하거나 과정을 계속합니다(?). 이제 완전히 다른 유형의 펑터으로 넘어갈 준비가 되었습니다.
 Finally, a use for that mysterious `id` function. It simply parrots back the value in the `Left` to pass the error message to `console.log`. We've made our fortune-telling app more robust by enforcing error handling from within `getAge`. We either slap the user with a hard truth like a high five from a palm reader or we carry on with our process. And with that, we're ready to move on to an entirely different type of functor.
+
+## 오래된 맥도날드는 이펙트를 가졌다
 
 ## Old McDonald Had Effects...
 
 <img src="images/dominoes.jpg" alt="dominoes.. need a reference" />
 
+순수성에 대한 장에서 순수함수의 이상한 예를 봤었지요. 이 함수는 부수효과(side-effect)를 가지고 있었지만 다른 함수로 감싸 이를 덮었어요. 다른 예를 볼까요?
 In our chapter about purity we saw a peculiar example of a pure function. This function contained a side-effect, but we dubbed it pure by wrapping its action in another function. Here's another example of this:
 
 ```js
